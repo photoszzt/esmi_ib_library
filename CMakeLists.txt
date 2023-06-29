@@ -17,6 +17,7 @@ if(NOT DEFINED CMAKE_MODULE_PATH)
 endif()
 ## Include common cmake modules
 include(utils)
+find_package(KernelHeaders REQUIRED)
 
 set(ENABLE_STATIC_LIB OFF CACHE STRING
     "Whether to build as a Static Library. Set 1 to Enable, default is Disabled.")
@@ -116,7 +117,8 @@ endif ()
 set(SRC_DIR "src")
 set(INC_DIR "include/e_smi")
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include
+                    ${KERNELHEADERS_INCLUDE_DIRS})
 set(SMI_SRC_LIST ${SMI_SRC_LIST} "${SRC_DIR}/e_smi.c")
 set(SMI_SRC_LIST ${SMI_SRC_LIST} "${SRC_DIR}/e_smi_monitor.c")
 set(SMI_SRC_LIST ${SMI_SRC_LIST} "${SRC_DIR}/e_smi_utils.c")
